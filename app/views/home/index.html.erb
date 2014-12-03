@@ -1,0 +1,6 @@
+<h1>Packets</h1>
+<ul>
+	<% for p in @packets %>
+		<li><%= time_ago_in_words p.created_at %> ago: <%= p.raw %></li>
+	<% end %>
+</ul>
