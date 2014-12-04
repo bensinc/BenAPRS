@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203180031) do
+ActiveRecord::Schema.define(version: 20141204195045) do
 
   create_table "packets", force: true do |t|
     t.string   "from"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20141203180031) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "raw"
+    t.integer  "station_id"
+  end
+
+  create_table "stations", force: true do |t|
+    t.string   "callsign"
+    t.float    "latitude",   limit: 53
+    t.float    "longitude",  limit: 53
+    t.integer  "user_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

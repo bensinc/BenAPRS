@@ -1,6 +1,20 @@
-<h1>Packets</h1>
-<ul>
-	<% for p in @packets %>
-		<li><%= time_ago_in_words p.created_at %> ago: <%= p.raw %></li>
-	<% end %>
-</ul>
+<h1>Stations</h1>
+
+<div id='mapDiv' style="position:absolute; width:400px; height:400px;"></div>
+
+
+
+<script>
+	$(function() {
+		var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {credentials:"AmvRb-iks8oQOb2UaPwWf67wh5LYsGtFMAkYxIj13ojaiI0qYCuh03rV0bv8UjHb"});
+		 
+            
+	      var pins = new Microsoft.Maps.EntityCollection();
+	      <% for s in @stations %>
+		      var pin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(<%= s.latitude %>, <%= s.longitude %>), {text: '<%= s.callsign %>'}); 
+		      pins.push(pin);
+		   <% end %>
+	      map.entities.push(pins);
+
+	});
+</script>
