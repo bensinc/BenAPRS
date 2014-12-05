@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  match '/stations' => 'home#stations', :via => [:get]
+  match '/packets' => 'home#packets', :via => [:get]
+  # API
 
   match '/api/write' => 'api#write', :via => [:post]
 

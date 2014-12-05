@@ -7,6 +7,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+	<link rel="stylesheet" href="/css/pure-min.css">
+	<link rel="stylesheet" href="/css/layouts/side-menu.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 	<script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
 	</script>
 
@@ -16,7 +23,36 @@
 
 
 
-<%= yield %>
+
+	<div id="layout">
+	    <!-- Menu toggle -->
+	    <a href="#menu" id="menuLink" class="menu-link">
+	        <!-- Hamburger icon -->
+	        <span></span>
+	    </a>
+
+	    <div id="menu">
+	        <div class="pure-menu pure-menu-open">
+	            <a class="pure-menu-heading" href="#">BenAPRS</a>
+
+	            <ul>
+	                <li><a href="/">Map</a></li>
+	                <li><a href="/stations">Stations</a></li>
+	                <li><a href="/packets">Packets</a></li>
+
+	                
+	            </ul>
+	        </div>
+	    </div>
+
+	    <div id="main">
+	    	<%= yield %>
+	   
+	    </div>
+	</div>
+
+	<script charset="UTF-8" type="text/javascript" src="/js/ui.js">
+
 
 </body>
 </html>

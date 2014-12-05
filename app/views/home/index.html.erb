@@ -1,20 +1,30 @@
-<h1>Stations</h1>
 
-<div id='mapDiv' style="position:absolute; width:400px; height:400px;"></div>
+<div id="map-container">
+	<div id="map" style="width: 400px; height: 1000px;"></div>	
+</div>
 
 
 
 <script>
 	$(function() {
-		var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {credentials:"AmvRb-iks8oQOb2UaPwWf67wh5LYsGtFMAkYxIj13ojaiI0qYCuh03rV0bv8UjHb"});
+		var map = new Microsoft.Maps.Map(document.getElementById("map"), {credentials:"AmvRb-iks8oQOb2UaPwWf67wh5LYsGtFMAkYxIj13ojaiI0qYCuh03rV0bv8UjHb"});
 		 
-            
+         var locs = [];
 	      var pins = new Microsoft.Maps.EntityCollection();
 	      <% for s in @stations %>
-		      var pin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(<%= s.latitude %>, <%= s.longitude %>), {text: '<%= s.callsign %>'}); 
+	      	var loc = new Microsoft.Maps.Location(<%= s.latitude %>, <%= s.longitude %>);
+		      var pin = new Microsoft.Maps.Pushpin(loc, {text: '<%= s.callsign %>'}); 
+		      pin.setOptions({width: 100, textOffset: new Microsoft.Maps.Point(6, 0)});
 		      pins.push(pin);
+		      locs.push(loc);
 		   <% end %>
 	      map.entities.push(pins);
+
+	      var bounds = Microsoft.Maps.LocationRect.fromLocations(locs);
+	      var viewOptions = map.getOptions();
+	      viewOptions.bounds = bounds;
+	      console.log(bounds);
+	      map.setView(viewOptions);
 
 	});
 </script>

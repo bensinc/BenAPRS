@@ -1,7 +1,7 @@
 require_relative 'APRSParser'
 include APRSParser
 
-data = "N0MPM-4>APTT4,KC0NFA-2*,W0AK-1*,WIDE2*:@041441z4125.70N/09255.50W_109/004g008t025r000p000P000h71b10260."
+data = "BHCNTY>APTT4,W0MG-5*,W0AK-1*,WIDE2*:!4235.93N/09222.57W#PHG51306/N. Black Hawk County Digi W0HHF@arr"
 
 packet = APRSParser.parse(data)
 puts packet

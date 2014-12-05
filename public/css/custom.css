@@ -1,0 +1,13 @@
+.MapPushpinBase div {
+	color: black !important;
+	text-shadow: 0px 0px 2px white;	
+}
+
+.header {
+	margin-bottom: 20px;
+}
+
+.pure-table {
+	width: 90%;
+	margin: 0 auto 0 auto;
+}

@@ -1,0 +1,28 @@
+<div class="header">
+
+    <h1>All Packets</h1>
+
+</div>
+
+
+
+<table class="pure-table">
+    <thead>
+        <tr>
+	        <th>Time</th>
+            <th>Packet</th>            
+        </tr>
+    </thead>
+
+    <tbody>
+    		<% for packet in @packets %>
+	        <tr>
+	            <td><%= time_ago_in_words(packet.created_at) %></td>
+	            <td><%= packet.raw %></td>
+	        </tr>
+        <% end %>
+
+        
+    </tbody>
+</table>
+    

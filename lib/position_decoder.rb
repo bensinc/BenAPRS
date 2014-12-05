@@ -17,12 +17,31 @@ def decode_position(message, timestamp)
 		position_data = position_data[7..-1]		
 	end
 
-	# 4125.70N/09255.50W_
-
+	# 4125.70N/09 255.50W_
+   # 01234567890 12345678
 	decoded['symbol_code'] = position_data[8]
 	decoded['symbol_table_id'] = position_data[-1]
 
 	
+
+	lat_deg = position_data[0..1]
+	lat_min = position_data[2..6]
+
+	
+
+	latitude = lat_deg.to_f + (lat_min.to_f / 60.0)
+	latitude = -latitude if position_data[7] == 'E'
+
+	decoded['latitude'] = latitude
+
+	lon_deg = position_data[9..11]
+	lon_min = position_data[12..16]
+
+	longitude = lon_deg.to_f + (lon_min.to_f / 60.0)
+
+	longitude = -longitude if position_data[17] == 'W'
+
+	decoded['longitude'] = longitude
 
 	return decoded
 end
