@@ -12,11 +12,13 @@
          var locs = [];
 	      var pins = new Microsoft.Maps.EntityCollection();
 	      <% for s in @stations %>
+	      	<% if s.latitude %>
 	      	var loc = new Microsoft.Maps.Location(<%= s.latitude %>, <%= s.longitude %>);
 		      var pin = new Microsoft.Maps.Pushpin(loc, {text: '<%= s.callsign %>'}); 
 		      pin.setOptions({width: 100, textOffset: new Microsoft.Maps.Point(6, 0)});
 		      pins.push(pin);
 		      locs.push(loc);
+		      <% end %>
 		   <% end %>
 	      map.entities.push(pins);
 
